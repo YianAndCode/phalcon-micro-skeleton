@@ -1,3 +1,7 @@
+[app]
+env = production
+url = 
+
 [database]
 adapter  = Mysql
 host     = localhost
