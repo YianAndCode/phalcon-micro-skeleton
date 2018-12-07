@@ -16,6 +16,7 @@ $loader->registerDirs(
 
 $loader->registerNamespaces([
     'Controllers' => APP_PATH . '/controllers/',
+    'Middlewares' => APP_PATH . '/middlewares/',
     'Models'      => APP_PATH . '/models/',
     'Services'    => APP_PATH . '/services/',
     'Traits'      => APP_PATH . '/traits/',

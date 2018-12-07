@@ -15,6 +15,9 @@
 │   ├── controllers
 │   │   └── ControllerBase.php
 │   │
+│   ├── middlewares
+│   │   └── MiddlewareBase.php
+│   │
 │   ├── models
 │   │   └── ModelBase.php
 │   │
@@ -48,3 +51,33 @@ require BASE_PATH . '/vendor/autoload.php';
 ```
 
 注释或删除即可
+
+## 中间件
+
+Phalcon 的中间件不支持只对某一组路由生效，因此对中间件封装了一次，可以直接继承 `Middlewares\MiddlewareBase`，然后重写 `public function handle(Micro $app): bool` 方法即可；`Middlewares\MiddlewareBase` 添加了 `protected $onlys = [];`（白名单） 和 `protected $excepts = [];`（排除列表），支持正则表达式，例如：
+
+```PHP
+<?php
+
+namespace Middlewares;
+
+use Phalcon\Mvc\Micro;
+
+class AuthMiddleware extends MiddlewareBase
+{
+    protected $excepts = [
+        '/user/login',    // 用户登录
+        '/wechat/*',      // 微信被动消息、支付回调等等
+    ];
+
+    public function handle(Micro $app): bool
+    {
+        if (! is_authorized()) {
+            return false;
+        }
+
+        return true;
+    }
+}
+
+```
