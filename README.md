@@ -7,7 +7,6 @@
 ```
 ├── app
 │   ├── config
-│   │   ├── config.ini
 │   │   ├── config.php
 │   │   ├── loader.php
 │   │   ├── router.php
@@ -38,6 +37,7 @@
 ├── vendor
 │
 ├── composer.json
+├── config.ini
 └── index.html
 ```
 

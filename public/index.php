@@ -28,6 +28,12 @@ try {
      * Get config service for use in inline setup below
      */
     $config = $di->getConfig();
+    
+    if ($config->app->env == 'production') {
+        error_reporting(0);
+    } else {
+        error_reporting(E_ALL);
+    }
 
     /**
      * Include Autoloader
